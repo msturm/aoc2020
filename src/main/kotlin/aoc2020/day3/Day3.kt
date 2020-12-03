@@ -25,7 +25,7 @@ class TobogganMap(private val mapData: List<String>) {
         }
     }
 
-    private fun takeStep(treeCount: Int, curX: Int, curY: Int, stepX: Int, stepY: Int): Int {
+    private tailrec fun takeStep(treeCount: Int, curX: Int, curY: Int, stepX: Int, stepY: Int): Int {
         return when (getCoordinate(curX, curY)) {
             MapElement.EMPTY -> takeStep(treeCount, curX + stepX, curY + stepY, stepX, stepY)
             MapElement.TREE -> takeStep(treeCount + 1, curX + stepX, curY + stepY, stepX, stepY)
