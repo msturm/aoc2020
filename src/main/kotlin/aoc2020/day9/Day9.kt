@@ -35,21 +35,15 @@ class Day9 {
     }
 
     fun findContiguousList(num: Long, input: List<String>): Long {
-        val inputInts = input.map {it.toLong()}
+        val inputInts = input.map(String::toLong)
         for (i in inputInts.indices) {
-            var minNum = Long.MAX_VALUE
-            var maxNum = 0L
             var c = 0L
             var j = i
             while (c < num) {
                 j +=1
                 c += inputInts[j]
-                minNum = min(inputInts[j], minNum)
-                maxNum = max(inputInts[j], maxNum)
-                println(minNum)
-                println(maxNum)
-                println("$i + $j == $c")
-                if (c == num) return minNum + maxNum
+                if (c == num)
+                    return inputInts.slice(i until j).minOrNull()!! + inputInts.slice(i until j).maxOrNull()!!
             }
         }
         return -1
