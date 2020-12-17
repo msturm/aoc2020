@@ -35,5 +35,6 @@ fun playGame(input: List<Int>, part2: Boolean = false): Int {
 //            println(turn)
         turn += 1
     }
+    println(numbers.size)
     return lastTurnVal
 }
