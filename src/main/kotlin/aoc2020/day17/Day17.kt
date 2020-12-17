@@ -1,6 +1,9 @@
 package aoc2020.day17
 
-
+/*
+It would probably be more readable to use a list for the coordinates instead of a complete grid. Not sure how hard that
+would make it. I went for solving it as fast as possible, hence the ugly code
+ */
 fun main() {
     val input = {}.javaClass.getResource("/day17-2020-1.input").readText().trim().lines()
     with(Tdg(input)) {
