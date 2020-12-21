@@ -12,11 +12,9 @@ fun main() {
         val ans1 = ExprSolver().parseNext(it.replace(" ", "")).first
         val ans2expr = AddPreference2(it).parse()
         val ans2 = ans2expr.calc()
-//        if (ans1 != ans2) {
             println(it)
             println(ans2expr)
             println("$ans1 $ans2")
-//        }
     }
     println("Day 18 part 1: $ans")
     val ans2 = input.fold(0L) {acc, el -> acc + AddPreference2(el).parse().calc()}
@@ -36,7 +34,6 @@ class AddPreference2(val input: String) {
     }
     class Num(val t: Long) : Term() {
         override fun toString(): String {
-//            return "Num($t)"
             return "$t"
         }
 
@@ -61,7 +58,6 @@ class AddPreference2(val input: String) {
     }
     class Add(val t: Term, val u: Term) : Term() {
         override fun toString(): String {
-//            return "Add($t, $u)"
             return "($t + $u)"
         }
 
@@ -69,7 +65,6 @@ class AddPreference2(val input: String) {
     }
     class Multiply(val t: Term, val u: Term) : Term() {
         override fun toString(): String {
-//            return "Multiply($t, $u)"
             return "($t * $u)"
         }
 
@@ -113,12 +108,7 @@ class AddPreference2(val input: String) {
                         is AddOp -> {
                             stack.pop()
                             stack.push(Add(stack.pop(), Num(charToLong(t))))
-                        }
-//                        is MultiplyOp -> {
-//                            stack.pop()
-//                            stack.push(Multiply(stack.pop(), Num(charToLong(t))))
-//                        }
-                        else -> {
+                        } else -> {
                             stack.push(Num(charToLong(t)))
                         }
                     }
@@ -135,12 +125,7 @@ class AddPreference2(val input: String) {
                         is AddOp -> {
                             stack.pop()
                             stack.push(Add(stack.pop(), parseExpr()))
-                        }
-//                        is MultiplyOp -> {
-//                            stack.pop()
-//                            stack.push(Multiply(stack.pop(), parseExpr()))
-//                        }
-                        else -> {
+                        } else -> {
                             stack.push(parseExpr())
                         }
                     }
@@ -149,37 +134,7 @@ class AddPreference2(val input: String) {
              }
             t = consume()
         }
-//            when {
-//                t.isDigit() -> {
-//                    stack += Num(charToLong(t))
-//                }
-//                t == '(' -> { // haakje
-////                    t = consume()
-//                    stack += parseExpr()
-//                }
-////                t == ')' -> {
-////                    consume()
-////                    return stack.pop()
-////                }
-//                t == '+' -> {
-////                    if (peek() == '(') {
-////                        t = consume()
-//                        return Add(stack.pop(), parseExpr())
-////                    } else {
-////                        return Add(stack.pop(), Num(charToLong(consume()!!)))
-////                    }
-//                }
-//                t == '*' -> {
-////                    if (peek() == '(') {
-////                        t = consume()
-////                        stack += Multiply(stack.pop(), parseExpr())
-////                    } else {
-//                        return Multiply(stack.pop(), parseExpr())
-////                    }
-//                }
-//            }
-//            t = consume()
-//        }
+
         var u = stack.pop()
         while (stack.peek() != null) {
             stack.pop()
@@ -195,7 +150,6 @@ class AddPreference2(val input: String) {
 }
 
 class ExprSolver() {
-//    val input = inputStr.replace(" ","")
 
     enum class Ops : BinaryOperator<Long> {
         UNDEFINED {
